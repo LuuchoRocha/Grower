@@ -1,11 +1,14 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {HomeScreen} from '@grower/screens';
+import {HomeScreen, SettingsScreen} from '@grower/screens';
+import {useTheme} from '@react-navigation/native';
 
 const Tabs = createBottomTabNavigator();
 
 export default function TabsNavigator() {
+  const {colors} = useTheme();
+
   return (
     <Tabs.Navigator
       screenOptions={({route}) => ({
@@ -13,23 +16,23 @@ export default function TabsNavigator() {
           let iconName;
 
           if (route.name === 'Home') {
-            iconName = focused
-              ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
+            iconName = 'home';
           } else if (route.name === 'Settings') {
-            iconName = focused ? 'ios-list-box' : 'ios-list';
+            iconName = 'cog';
+          } else {
+            iconName = 'android';
           }
 
           // You can return any component that you like here!
-          return <Icon name="android" size={size} color={color} />;
+          return <Icon name={iconName} size={size} color={color} />;
         },
       })}
       tabBarOptions={{
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
+        activeTintColor: colors.primary,
+        inactiveTintColor: colors.background,
       }}>
       <Tabs.Screen name="Home" component={HomeScreen} />
-      <Tabs.Screen name="Home2" component={HomeScreen} />
+      <Tabs.Screen name="Settings" component={SettingsScreen} />
     </Tabs.Navigator>
   );
 }

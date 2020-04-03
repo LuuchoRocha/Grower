@@ -1,19 +1,17 @@
 import * as React from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
+import {connect} from 'react-redux';
+import {useTheme} from '@react-navigation/native';
+import Button from '../../components/Button';
 
-export default function HomeScreen({navigation}) {
+function HomeScreen({navigation, state, increase, decrease}) {
+  const {colors} = useTheme();
+
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Home... again"
-        onPress={() => navigation.push('Home')}
-      />
-      <Button
-        title="Go to About"
-        onPress={() => navigation.navigate('About')}
-      />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
+      <Text style={styles.title}>Home Screen</Text>
+      <Button text="Increase counter" onPress={increase} />
+      <Button text="Decrease counter" onPress={decrease} />
     </View>
   );
 }
@@ -22,6 +20,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
   },
+  title: {},
 });
+
+const mapStateToProps = (state) => {
+  return {
+    state: state,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    increase: () => dispatch({type: 'INCREASE_COUNTER'}),
+    decrease: () => dispatch({type: 'DECREASE_COUNTER'}),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
