@@ -23,5 +23,5 @@ const styles = StyleSheet.create({
   }),
   text: (colors) => ({
     color: colors.buttonText,
-  })
+  }),
 });

@@ -1,12 +1,9 @@
 import * as React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import {useTheme} from '@react-navigation/native';
 import Button from '../../components/Button';
 
 function HomeScreen({navigation, state, increase, decrease}) {
-  const {colors} = useTheme();
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Home Screen</Text>
