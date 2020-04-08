@@ -21,8 +21,8 @@ def flipper_post_install(installer)
   end
 end
 
-target 'grower' do
-  # Pods for grower
+target 'GrowerAssistant' do
+  # Pods for GrowerAssistant
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -54,7 +54,7 @@ target 'grower' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'growerTests' do
+  target 'GrowerAssistantTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -71,10 +71,10 @@ target 'grower' do
   end
 end
 
-target 'grower-tvOS' do
-  # Pods for grower-tvOS
+target 'GrowerAssistant-tvOS' do
+  # Pods for GrowerAssistant-tvOS
 
-  target 'grower-tvOSTests' do
+  target 'GrowerAssistant-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

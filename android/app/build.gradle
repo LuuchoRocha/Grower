@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.grower"
+        applicationId "com.growerassistant"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
