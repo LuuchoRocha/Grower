@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
+import {View, StyleSheet} from 'react-native';
+import Text from '../../components/Text';
 
-function SettingsScreen({navigation, state}) {
+export default function SettingsScreen({navigation}) {
   return (
     <View style={styles.container}>
-      <Text style={styles.counter}>{state.counter}</Text>
+      <Text>This is the settings screen.</Text>
     </View>
   );
 }
@@ -16,20 +16,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
-  counter: {
-    fontSize: 32,
-    fontWeight: 'bold',
-  },
 });
-
-const mapStateToProps = (state) => {
-  return {
-    state: state,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsScreen);

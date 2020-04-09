@@ -16,9 +16,9 @@ export default function TabsNavigator() {
           let iconName;
 
           if (route.name === 'Home') {
-            iconName = 'home';
+            iconName = 'cannabis';
           } else if (route.name === 'Settings') {
-            iconName = 'cog';
+            iconName = 'cogs';
           } else {
             iconName = 'android';
           }
@@ -28,8 +28,16 @@ export default function TabsNavigator() {
         },
       })}
       tabBarOptions={{
-        activeTintColor: colors.primary,
-        inactiveTintColor: colors.background,
+        activeTintColor: colors.activeIcon,
+        inactiveTintColor: colors.inactiveIcon,
+        labelStyle: {
+          fontFamily: 'sans',
+        },
+        style: {
+          borderTopWidth: 0,
+          height: 48,
+          paddingVertical: 4,
+        }
       }}>
       <Tabs.Screen name="Home" component={HomeScreen} />
       <Tabs.Screen name="Settings" component={SettingsScreen} />

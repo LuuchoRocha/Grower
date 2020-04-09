@@ -13,10 +13,8 @@ export default function StackNavigator() {
       mode="modal"
       initialRouteName="Tabs"
       screenOptions={({route}) => ({
-        headerTintColor: colors.textDark,
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
+        headerTintColor: colors.headerText,
+        title: (route.params && route.params.name) || 'Grower',
       })}>
       <Stack.Screen name="Tabs" component={TabsNavigator} />
       <Stack.Screen name="Modal" component={ModalScreen} />

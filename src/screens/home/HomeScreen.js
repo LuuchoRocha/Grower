@@ -1,12 +1,13 @@
 import * as React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import Button from '../../components/Button';
+import Text from '../../components/Text';
 
 function HomeScreen({navigation, state, increase, decrease}) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home Screen</Text>
+      <Text style={styles.counter}>{state.counter}</Text>
       <Button text="Increase counter" onPress={increase} />
       <Button text="Decrease counter" onPress={decrease} />
     </View>
@@ -19,7 +20,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
-  title: {},
+  counter: {
+    fontSize: 32,
+    fontWeight: 'bold',
+  },
 });
 
 const mapStateToProps = (state) => {

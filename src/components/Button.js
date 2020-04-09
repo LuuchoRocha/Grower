@@ -17,11 +17,15 @@ const styles = StyleSheet.create({
   button: (colors) => ({
     flex: 0,
     backgroundColor: colors.button,
-    elevation: 4,
-    padding: 8,
-    borderRadius: 4,
+    elevation: 2,
+    paddingHorizontal: 16,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   }),
   text: (colors) => ({
     color: colors.buttonText,
+    fontFamily: 'sans',
   }),
 });
