@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {HomeScreen, SettingsScreen} from '@grower/screens';
+import {HomeScreen, SettingsScreen, EnvironmentsScreen} from '@grower/screens';
 import {useTheme} from '@react-navigation/native';
 
 const Tabs = createBottomTabNavigator();
@@ -40,6 +40,7 @@ export default function TabsNavigator() {
         }
       }}>
       <Tabs.Screen name="Home" component={HomeScreen} />
+      <Tabs.Screen name="Environments" component={EnvironmentsScreen} />
       <Tabs.Screen name="Settings" component={SettingsScreen} />
     </Tabs.Navigator>
   );

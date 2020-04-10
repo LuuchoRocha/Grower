@@ -2,10 +2,10 @@ import * as React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 
-function Button({text, onPress}) {
+function Button({text, onPress, style}) {
   const {colors} = useTheme();
   return (
-    <TouchableOpacity onPress={onPress} style={styles.button(colors)}>
+    <TouchableOpacity onPress={onPress} style={[styles.button(colors), style]}>
       <Text style={styles.text(colors)}>{text}</Text>
     </TouchableOpacity>
   );
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     elevation: 2,
     paddingHorizontal: 16,
     height: 40,
-    borderRadius: 20,
+    borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
   }),

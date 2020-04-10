@@ -1,74 +1,42 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import {StatusBar} from 'react-native';
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from '@react-navigation/native';
-import {DrawerNavigator} from '@grower/navigators';
 import {PersistGate} from 'redux-persist/integration/react';
-import {store, persistor} from './src/store';
-import {Provider} from 'react-redux';
+import {Provider, useSelector} from 'react-redux';
 import {AppearanceProvider, useColorScheme} from 'react-native-appearance';
+import {NavigationContainer} from '@react-navigation/native';
+import {store, persistor} from '@grower/store';
+import {DrawerNavigator} from '@grower/navigators';
+import {LightTheme, DarkTheme} from '@grower/themes';
+import {Selectors} from '@grower/store-environments';
 
-const MyDefaultTheme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: 'rgb(240, 255, 200)',
-    primaryInactive: 'rgb(200, 220, 200)',
-    background: 'rgb(255, 255, 230)',
-    card: 'rgb(60, 100, 30)',
-    text: 'rgb(0, 0, 0)',
-    headerText: 'rgb(240, 255, 200)',
-    border: 'rgb(199, 199, 204)',
-    button: 'rgb(60, 100, 30)',
-    buttonText: 'rgb(255, 255, 255)',
-    activeIcon: 'rgb(220, 255, 200)',
-    inactiveIcon: 'rgb(140, 160, 130)',
-  },
-};
-
-const MyDarkTheme = {
-  ...DarkTheme,
-  colors: {
-    ...DarkTheme.colors,
-    primary: 'rgb(90, 140, 90)',
-    primaryInactive: 'rgb(200, 220, 200)',
-    background: 'rgb(30, 50, 20)',
-    card: 'rgb(20, 30, 10)',
-    text: 'rgb(180, 200, 160)',
-    headerText: 'rgb(180, 200, 160)',
-    border: 'rgb(90, 140, 90)',
-    button: 'rgb(20, 30, 10)',
-    buttonText: 'rgb(180, 200, 160)',
-    activeIcon: 'rgb(160, 180, 150)',
-    inactiveIcon: 'rgb(80, 100, 60)',
-  },
-};
-
-export default function App() {
+function Main() {
+  const theme = useSelector(Selectors.theme);
   const scheme = useColorScheme();
 
   return (
+    <AppearanceProvider>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor={
+          scheme === 'dark' || theme === 'dark'
+            ? DarkTheme.colors.card
+            : LightTheme.colors.card
+        }
+      />
+      <NavigationContainer
+        theme={scheme === 'dark' || theme === 'dark' ? DarkTheme : LightTheme}>
+        <DrawerNavigator />
+      </NavigationContainer>
+    </AppearanceProvider>
+  );
+}
+
+export default function App() {
+  return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <StatusBar
-          barStyle="light-content"
-          backgroundColor={
-            scheme === 'dark'
-              ? MyDarkTheme.colors.card
-              : MyDefaultTheme.colors.card
-          }
-        />
-        <AppearanceProvider>
-          <NavigationContainer
-            theme={scheme === 'dark' ? MyDarkTheme : MyDefaultTheme}>
-            <DrawerNavigator />
-          </NavigationContainer>
-        </AppearanceProvider>
-      </PersistGate>
+      <PersistGate loading={null} persistor={persistor} />
+      <Main />
     </Provider>
   );
 }
