@@ -19,6 +19,7 @@ function HomeScreen({navigation}) {
         text="Decrease counter"
         onPress={() => dispatch(Actions.decreaseCounter())}
       />
+      <Button text="Open modal" onPress={() => navigation.navigate('Modal')} />
     </View>
   );
 }

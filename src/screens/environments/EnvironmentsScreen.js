@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
-import {Text, EnvironmentCard} from '@grower/components';
+import {EnvironmentCard} from '@grower/components';
 import {Selectors} from '@grower/store-environments';
 import {FlatList} from 'react-native-gesture-handler';
 
@@ -15,7 +15,7 @@ function renderItem({item}) {
   );
 }
 
-function EnvironmentsScreen({navigation}) {
+function EnvironmentsScreen({route, navigation}) {
   const environments = useSelector(Selectors.environments);
 
   return (

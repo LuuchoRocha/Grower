@@ -1,11 +1,8 @@
 import * as React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {useTheme} from '@react-navigation/native';
 import {Text, Button, Card} from '@grower/components';
 
 function EnvironmentCard({name, description}) {
-  const {colors} = useTheme();
-
   return (
     <Card>
       <View style={styles.header}>

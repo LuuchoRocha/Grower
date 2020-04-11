@@ -7,6 +7,7 @@ import {AppearanceProvider, useColorScheme} from 'react-native-appearance';
 import {NavigationContainer} from '@react-navigation/native';
 import {store, persistor} from '@grower/store';
 import {DrawerNavigator} from '@grower/navigators';
+import {MenuIcon} from '@grower/components';
 import {LightTheme, DarkTheme} from '@grower/themes';
 import {Selectors} from '@grower/store-environments';
 

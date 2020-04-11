@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {StackNavigator} from '@grower/navigators';
+import {TabsNavigator} from '@grower/navigators';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {Dimensions} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 const Drawer = createDrawerNavigator();
 
 export default function DrawerNavigator() {
@@ -10,10 +10,7 @@ export default function DrawerNavigator() {
     <Drawer.Navigator
       initialRouteName="Stack"
       backBehavior="history"
-      drawerStyle={{
-        elevation: 8,
-        width: (Dimensions.get('window').width / 3) * 2,
-      }}
+      drawerStyle={styles.drawer}
       drawerContentOptions={{
         itemStyle: {marginVertical: 30},
         labelStyle: {
@@ -23,7 +20,7 @@ export default function DrawerNavigator() {
       }}>
       <Drawer.Screen
         name="Stack"
-        component={StackNavigator}
+        component={TabsNavigator}
         options={{
           drawerLabel: 'Grower',
           drawerIcon: ({focused, color, size}) => (
@@ -34,3 +31,10 @@ export default function DrawerNavigator() {
     </Drawer.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  drawer: {
+    elevation: 8,
+    width: (Dimensions.get('window').width / 3) * 2,
+  },
+});
