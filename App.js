@@ -1,8 +1,8 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import {StatusBar} from 'react-native';
+import {View, Text, StatusBar} from 'react-native';
 import {PersistGate} from 'redux-persist/integration/react';
-import {Provider, useSelector} from 'react-redux';
+import {Provider, useSelector, connect} from 'react-redux';
 import {AppearanceProvider, useColorScheme} from 'react-native-appearance';
 import {NavigationContainer} from '@react-navigation/native';
 import {store, persistor} from '@grower/store';
@@ -11,25 +11,34 @@ import {LightTheme, DarkTheme} from '@grower/themes';
 import {Selectors} from '@grower/store-environments';
 
 function Main() {
+  const rehydrated = useSelector(Selectors.rehydrated);
   const theme = useSelector(Selectors.theme);
   const scheme = useColorScheme();
 
-  return (
-    <AppearanceProvider>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor={
-          scheme === 'dark' || theme === 'dark'
-            ? DarkTheme.colors.card
-            : LightTheme.colors.card
-        }
-      />
-      <NavigationContainer
-        theme={scheme === 'dark' || theme === 'dark' ? DarkTheme : LightTheme}>
-        <DrawerNavigator />
-      </NavigationContainer>
-    </AppearanceProvider>
-  );
+  if (rehydrated) {
+    return (
+      <AppearanceProvider>
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor={
+            (scheme === 'dark' && theme !== 'light') || theme === 'dark'
+              ? DarkTheme.colors.card
+              : LightTheme.colors.card
+          }
+        />
+        <NavigationContainer
+          theme={
+            (scheme === 'dark' && theme !== 'light') || theme === 'dark'
+              ? DarkTheme
+              : LightTheme
+          }>
+          <DrawerNavigator />
+        </NavigationContainer>
+      </AppearanceProvider>
+    );
+  } else {
+    return null;
+  }
 }
 
 export default function App() {

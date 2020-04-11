@@ -32,7 +32,6 @@ const environmentsReducer = (state = initialState, action) => {
       };
     }
     case types.SET_THEME: {
-      console.log(action);
       return {
         ...state,
         theme: action.payload,
