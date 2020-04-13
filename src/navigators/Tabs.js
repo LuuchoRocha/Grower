@@ -3,28 +3,16 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
   HomeStackNavigator,
   EnvironmentsStackNavigator,
+  SettingsStackNavigator,
 } from '@grower/navigators';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {SettingsScreen} from '@grower/screens';
-import {RightIcon} from '@grower/components';
 import {useTheme} from '@react-navigation/native';
-import {Alert} from 'react-native';
 
 const Tabs = createBottomTabNavigator();
 
 export default function TabsNavigator({navigation}) {
   const {colors} = useTheme();
-
-  function createEnvironment() {
-    Alert.alert('Hola');
-  }
-
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: 'Ambientes',
-      headerRight: () => <RightIcon onPress={createEnvironment} name="plus" />,
-    });
-  }, [navigation]);
 
   return (
     <Tabs.Navigator
@@ -58,7 +46,7 @@ export default function TabsNavigator({navigation}) {
       }}>
       <Tabs.Screen name="Home" component={HomeStackNavigator} />
       <Tabs.Screen name="Environments" component={EnvironmentsStackNavigator} />
-      <Tabs.Screen name="Settings" component={SettingsScreen} />
+      <Tabs.Screen name="Settings" component={SettingsStackNavigator} />
     </Tabs.Navigator>
   );
 }

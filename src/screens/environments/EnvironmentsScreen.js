@@ -1,9 +1,8 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
+import {View, StyleSheet, FlatList} from 'react-native';
 import {EnvironmentCard} from '@grower/components';
 import {Selectors} from '@grower/store-environments';
-import {FlatList} from 'react-native-gesture-handler';
 
 function renderItem({item}) {
   return (
